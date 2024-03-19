@@ -46,7 +46,7 @@ const getLatandLng=(place,type)=>{
     <div className='bg-slate-200 p-3 rounded-lg mt-3 flex items-center gap-4'>
       <img src={type === 'source' ? sourceImage : destinationImage} alt="" width={15} height={15} />
       <GooglePlacesAutocomplete
-      apiKey='AIzaSyANExzggzbZP50-oI-zYdlCj9B2MS38AXk'
+      // apiKey='AIzaSyANExzggzbZP50-oI-zYdlCj9B2MS38AXk'
         selectProps={{
           value,
           onChange: (place)=>{getLatandLng(place,type);setValue(place)},
