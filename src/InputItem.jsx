@@ -1,16 +1,18 @@
 "use client"
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import sourceImage from "./source.png";
 import destinationImage from "./destination.png";
 import {useState} from "react"
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
+import { SourceContext} from './SourceContext';
+import { DestinationContext } from './DestinationContext';
 
 const InputItem = ({ type }) => {
     const [value, setValue] = useState(null);
     const [placeholder,setPlaceholder] = useState(null);
-    const [source,setSource] = useState(null);
-    const [destination,setDestination] = useState(null);
+    const {source,setSource} = useContext(SourceContext);
+    const {destination,setDestination} = useContext(DestinationContext);
     useEffect(() => {
         type==='source'?
         setPlaceholder('Pickup Location'):
@@ -20,7 +22,22 @@ const getLatandLng=(place,type)=>{
         geocodeByAddress(place.label)
         .then(results => getLatLng(results[0]))
         .then(({ lat, lng }) =>{
-            console.log(lng);
+            if(type==='source'){
+                setSource({
+                    lat:lat,
+                    lng:lng,
+                    name:place.label,
+                    label:place.label,
+                })
+            }
+            else{
+                setDestination({
+                    lat:lat,
+                    lng:lng,
+                    name:place.label,
+                    label:place.label,
+                })
+            }
         });
     }
 

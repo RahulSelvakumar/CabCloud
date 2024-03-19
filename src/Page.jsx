@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import GoogleMapSection from "./GoogleMapSection";
 import SearchSection from "./SearchSection";
