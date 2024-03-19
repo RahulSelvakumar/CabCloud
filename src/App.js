@@ -1,6 +1,7 @@
 import "@aws-amplify/ui-react/styles.css";
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import InputItem from "./InputItem";
+
+import Page from "./Page";
 function App({ signOut }) {
   return (
     <div className="App">
@@ -16,19 +17,7 @@ function App({ signOut }) {
         </div>
       </div>
 
-      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="p-2 md:pd-6 border-[2px] rounded-xl">
-          <p className="text-[20px] font-bold">Get a ride</p>
-          <InputItem type="source" />
-          <InputItem type="destination" />
-
-          <button className="p-3 bg-black w-full mt-5 text-white rounded-lg">
-            Search
-          </button>
-        </div>
-
-        <div className="col-span-2">Google Map</div>
-      </div>
+      <Page />
     </div>
   );
 }
