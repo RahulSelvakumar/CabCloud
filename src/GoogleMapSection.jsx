@@ -9,15 +9,15 @@ import { SourceContext } from "./SourceContext";
 import { DestinationContext } from "./DestinationContext";
 import sourceImage from "./source.png";
 import destinationImage from "./destination.png";
-
+  
 const GoogleMapSection = () => {
   const containerStyle = {
     width: "100%",
     height: window.innerWidth * 0.45,
   };
 
-  const { source, setSource } = useContext(SourceContext);
-  const { destination, setDestination } = useContext(DestinationContext);
+  const { source } = useContext(SourceContext);
+  const { destination } = useContext(DestinationContext);
 
   const [center, setCenter] = useState({
     lat: -3.745,
@@ -28,7 +28,7 @@ const GoogleMapSection = () => {
   const [directionRoutePoints, setDirectionRoutePoints] = useState([]);
 
   useEffect(() => {
-    if (source?.length != [] && map) {
+    if (source.length != [] && map) {
       map.panTo({
         lat: source.lat,
         lng: source.lng,
@@ -38,22 +38,23 @@ const GoogleMapSection = () => {
         lng: source.lng,
       });
     }
-    if (source.length != [] && destination.length != []) {
+    if(source!=null && destination!=null){
       directionRoute();
     }
   }, [source]);
 
   useEffect(() => {
-    if (destination?.length != [] && map) {
+    if (destination.length != [] && map) {
       setCenter({
         lat: destination.lat,
         lng: destination.lng,
       });
     }
-    if (source.length != [] && destination.length != []) {
+    if(source!=null && destination!=null){
       directionRoute();
     }
   }, [destination]);
+
 
   const directionRoute = () => {
     const DirectionService = new window.google.maps.DirectionsService();
@@ -71,7 +72,7 @@ const GoogleMapSection = () => {
         }
       }
     );
-  };  
+  };
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
