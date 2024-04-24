@@ -7,7 +7,6 @@ CabCloud is a serverless web application built with React.js and AWS services li
 - User authentication using AWS Amplify
 - User can search for available cabs
 - User can book a cab
-- User can view their booking history
 - Real-time updates on cab availability
 
 ## Tech Stack
